@@ -1,0 +1,26 @@
+1 ---------------------------
+composer require laravel/ui
+
+php artisan ui vue --auth
+
+npm install && npm run dev
+
+php artisan migrate
+
+2 ----------------------------
+
+php artisan make:controller \\Admin\\UsersController -r -mUser
+
+Route::resource('/admin/users', 'Admin/UsersController', ['except' => ['show', 'create', 'store']]);
+
+php artisan route:list
+
+3 ----------------------------
+
+Route::namespace('Admin')->prefix('admin')->name('admin')->group(function() {
+ Route::resource('/users', 'UsersController', ['except' => ['show', 'create', 'store']]);
+});
+
+4 ----------------------------
+
+
